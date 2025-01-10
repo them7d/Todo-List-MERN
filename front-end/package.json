@@ -1,0 +1,20 @@
+{
+  "name": "front-end",
+  "version": "1.0.0",
+  "description": "front-end for todo list project make with MERN stack",
+  "homepage": "https://github.com/them7d/Todo-List-MERN#readme",
+  "bugs": {
+    "url": "https://github.com/them7d/Todo-List-MERN/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/them7d/Todo-List-MERN.git"
+  },
+  "license": "ISC",
+  "author": "Mohammad Zaid",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
