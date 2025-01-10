@@ -8,7 +8,7 @@ install dependencies
 npm i
 ```
 
-add user and password of mongodb database in .env file
+create file .env and add user and password of mongodb database in .env file
 
 run the server
 ```bash
