@@ -1,20 +1,36 @@
 {
   "name": "front-end",
-  "version": "1.0.0",
-  "description": "front-end for todo list project make with MERN stack",
-  "homepage": "https://github.com/them7d/Todo-List-MERN#readme",
-  "bugs": {
-    "url": "https://github.com/them7d/Todo-List-MERN/issues"
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cra-template": "1.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-scripts": "^5.0.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/them7d/Todo-List-MERN.git"
-  },
-  "license": "ISC",
-  "author": "Mohammad Zaid",
-  "type": "commonjs",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
