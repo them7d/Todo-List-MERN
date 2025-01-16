@@ -1,6 +1,7 @@
 const express = require("express");
+const { ObjectId } = require("mongodb");
 const router = express.Router();
-const  {getDB}  = require("../db/conn");
+const  { getDB }  = require("../db/conn");
 // get all tasks : GET - METHOD
 router.get("/",async (req, res)=>{
     try{
@@ -34,6 +35,7 @@ router.post("/", async (req,res)=>{
 // delete task : DELETE - METHOD
 router.delete("/:id", async (req, res)=>{
     try{
+        const db = getDB();
         await db.collection("tasks").deleteOne({_id :req.body.Id});
     }catch(error){
         console.log(error)
@@ -42,12 +44,19 @@ router.delete("/:id", async (req, res)=>{
 });
 
 // update task : PUT - METHOD
-router.put("/:id", async (req, res)=>{
+router.put("/", async (req, res)=>{
     try{
-        await db.collection("tasks").updateOne({_id:req.body.Id},{$set:{title:req.body.title}});
+        const db = getDB();
+        let response = await db.collection("tasks").updateOne({_id: new ObjectId(String(req.body.id))},{$set:{ title: req.body.title, completed: req.body.completed }});
+        console.log(response);
+        
     }catch(error){
         console.log(error)
+    }finally{
+        res.send("updated sccessfully")
     }
-    console.log(`update task id : ${req.params.id}`);
+    console.log(req.body);
+    
+    console.log(`update task id : ${req.body.id}`);
 });
 module.exports = router;
