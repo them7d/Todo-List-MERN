@@ -7,6 +7,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
+    {/* <!-- from cdn -->  */}
+    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
   </React.StrictMode>
 );
 
