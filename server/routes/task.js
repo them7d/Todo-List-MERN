@@ -18,6 +18,7 @@ router.get("/",async (req, res)=>{
 // create task : POST - METHOD
 router.post("/", async (req,res)=>{
     try{
+        const db = getDB();
         await db.collection("tasks").insertOne({
             userId: req.body.userId,
             title: req.body.title,
