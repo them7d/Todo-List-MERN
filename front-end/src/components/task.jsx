@@ -44,13 +44,22 @@ export default function Task(props){
     setIsEditing(false);
     debounceUpdate({id:props.child._id, title:newTitle, completed:completed});
   }
-  
+
   // handle completed check
   const handleCompleted = (value)=>{
     setCompleted(value);
     debounceUpdate({id:props.child._id, title:content, completed:value});
   }
-
+  
+  // handle delete button
+  const handleDelete = ()=>{
+    let onDelete = props.onDelete;
+    if(onDelete){
+      onDelete({
+        id: props.child._id
+      });
+    }
+  }
   // icons Size of tasks
   let icons_size = 15;
   
@@ -82,7 +91,7 @@ export default function Task(props){
           <button className="m-3 p-2 rounded-sm bg-orange-400" onClick={handleIsEditing}>
             <Edit x={icons_size} y={icons_size}/>
           </button>
-          <button className="m-3 p-2 rounded-sm bg-red-600">
+          <button className="m-3 p-2 rounded-sm bg-red-600" onClick={handleDelete}>
             <Trash x={icons_size} y={icons_size}/>
           </button>
         </div>
