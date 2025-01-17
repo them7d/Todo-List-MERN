@@ -2,13 +2,13 @@ import React, {useEffect, useState} from "react"
 import Task from "./components/task"
 import PlusIcon from "./components/plus_icon"
 function App() {
-
+  let pathBackend = "http://localhost:3025/task";
   // request all tasks from the backend and store them in tasks
   const [tasks, setTasks] = useState([]);
   useEffect(()=>{
     const fetchData = async ()=>{
       try{
-        let response = await fetch("http://localhost:3025/task",{
+        let response = await fetch(pathBackend,{
           method:"GET",
           headers:{
             'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ function App() {
   const handleAddTask = async ()=>{
     const task = {title: "", completed: false};
     try{
-      const response = await fetch("http://localhost:3025/task",{
+      const response = await fetch(pathBackend,{
         method:"POST",
         headers:{
           'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ function App() {
   //            - completed : Boolean
   const onUpdate = async (task)=>{
     try{
-      const response = await fetch("http://localhost:3025/task",{
+      const response = await fetch(pathBackend,{
         method:"PUT",
         headers:{
           'Content-Type': 'application/json'
@@ -66,7 +66,7 @@ function App() {
   // add delete request to server
   const handleDelete= async (task)=>{
     try{
-      const response = await fetch("http://localhost:3025/task",{
+      const response = await fetch(pathBackend,{
         method:"DELETE",
         headers:{
           'Content-Type': 'application/json'
