@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react"
+import React, {useState, useRef, useEffect} from "react"
 import { debounce } from "lodash"
 import CheckBox from "./checkbox"
 import Trash from "./trash"
@@ -11,7 +11,7 @@ export default function Task(props){
   
   // title of task
   const [content, setContent] = useState(props.child.title);
-  
+
   // status of the task
   const [completed, setCompleted] = useState(props.child.completed); 
 
@@ -56,7 +56,7 @@ export default function Task(props){
     let onDelete = props.onDelete;
     if(onDelete){
       onDelete({
-        id: props.child._id
+        _id: props.child._id
       });
     }
   }

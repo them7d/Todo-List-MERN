@@ -13,6 +13,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start-tail": "tailwindcss -i ./src/App.css -o ./src/index.css --watch",
+    "build-tail": "tailwindcss -i ./src/App.css -o ./src/index.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

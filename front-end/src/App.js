@@ -1,20 +1,24 @@
 import React, {useEffect, useState} from "react"
 import Task from "./components/task"
 import PlusIcon from "./components/plus_icon"
+import pathToBacknd from "./path_To_Backend.js"
 function App() {
-  let pathBackend = "http://localhost:3025/task";
+  
+  // initialize path to backend
+  const pathToBackend = pathToBacknd();
+
   // request all tasks from the backend and store them in tasks
   const [tasks, setTasks] = useState([]);
   useEffect(()=>{
     const fetchData = async ()=>{
       try{
-        let response = await fetch(pathBackend,{
+        const response = await fetch(pathToBackend,{
           method:"GET",
           headers:{
             'Content-Type': 'application/json'
           }
         });
-        let data = await response.json();
+        const data = await response.json();
         setTasks(data);
       }catch(error){
         console.log(error);
@@ -27,7 +31,7 @@ function App() {
   const handleAddTask = async ()=>{
     const task = {title: "", completed: false};
     try{
-      const response = await fetch(pathBackend,{
+      const response = await fetch(pathToBackend,{
         method:"POST",
         headers:{
           'Content-Type': 'application/json'
@@ -51,7 +55,7 @@ function App() {
   //            - completed : Boolean
   const onUpdate = async (task)=>{
     try{
-      const response = await fetch(pathBackend,{
+      await fetch(pathToBackend,{
         method:"PUT",
         headers:{
           'Content-Type': 'application/json'
@@ -62,11 +66,11 @@ function App() {
       console.log(error);
     }
   }
-
+  
   // add delete request to server
-  const handleDelete= async (task)=>{
+  const handleDelete = async (task)=>{
     try{
-      const response = await fetch(pathBackend,{
+      const response = await fetch(pathToBackend,{
         method:"DELETE",
         headers:{
           'Content-Type': 'application/json'
@@ -74,7 +78,7 @@ function App() {
         body: JSON.stringify(task),
       })
       if(response.ok){        
-        setTasks(tasks.filter((t)=>t._id !== task.id));
+        setTasks(prevtasks=>prevtasks.filter((t)=>t._id !== task._id));
       }
     }catch(error){
       console.log(error);
@@ -88,7 +92,7 @@ function App() {
       <div className="tasks-container mx-auto max-w-[1000px]">
         {tasks.length === 0 && <div className="text-center font-bold my-4 text-gray-400">No tasks found</div>}
         {tasks.map((child, index) => {
-          return <Task key={index} child={child} onUpdate={onUpdate} onDelete={handleDelete}/>
+          return <Task key={child._id} child={child} onUpdate={onUpdate} onDelete={handleDelete}/>
         })} 
         <div className="addTask flex mx-3 shadow-md rounded-md bg-gray-500 hover:bg-gray-700">
           <button className="flex py-3 w-full items-center justify-center" onClick={handleAddTask}>
